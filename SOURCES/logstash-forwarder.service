@@ -3,8 +3,8 @@ Description=Logstash Forwarder
 After=syslog.target
 
 [Service]
-WorkingDirectory=/var/lib/logstash-forwarder
-ExecStart=/opt/logstash-forwarder/bin/logstash-forwarder -config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100
+WorkingDirectory=/opt/logstash-forwarder
+ExecStart=/opt/logstash-forwarder/logstash-forwarder -config /opt/logstash-forwarder.conf -spool-size 100
 Restart=on-failure
 StandardError=syslog
 

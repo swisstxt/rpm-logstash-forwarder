@@ -3,6 +3,7 @@ VERSION="1"
 RELEASE="1"
 NAME=logstash-forwarder
 SPEC=$(shell .make_helper/getspec ${NAME})
+OS_RELEASE=$(shell lsb_release -rs | cut -f1 -d.)
 
 all: build
 
@@ -17,7 +18,6 @@ get-thirdparty:
 
 tidy-thirdparty:
 	rm -rf ./SOURCES/logstash-forwarder
-	mv ./SOURCES/logstash-forwarder.bin ./SOURCES/logstash-forwarder
 
 build-thirdparty: get-thirdparty
 	cd ./SOURCES/logstash-forwarder; go build
@@ -26,4 +26,12 @@ build-thirdparty: get-thirdparty
 build: clean build-thirdparty tidy-thirdparty
 	cp -r ./SPECS/* ./rpmbuild/SPECS/ || true
 	cp -r ./SOURCES/* ./rpmbuild/SOURCES/ || true
-	echo ${SPEC}
+	rpmbuild -ba ${SPEC} \
+	--define "ver ${VERSION}" \
+	--define "rel ${RELEASE}" \
+	--define "name ${NAME}" \
+	--define "os_rel ${OS_RELEASE}" \
+	--define "_topdir %(pwd)/rpmbuild" \
+	--define "_builddir %{_topdir}" \
+	--define "_rpmdir %{_topdir}" \
+	--define "_srcrpmdir %{_topdir}" \
