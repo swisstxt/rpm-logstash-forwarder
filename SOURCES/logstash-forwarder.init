@@ -1,0 +1,106 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          logstash-forwarder
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: log shipper
+### END INIT INFO
+
+# Author: Daniel Menet <daniel.menet@swisstxt.ch>
+
+# PATH should only include /usr/* if it runs after the mountnfs.sh script
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+DESC="log shipper"
+NAME=logstash-forwarder
+DAEMON=/opt/logstash-forwarder/bin/logstash-forwarder.sh
+DAEMON_ARGS="-config /etc/logstash-forwarder/logstash-forwarder -spool-size 100 -log-to-syslog"
+PIDFILE=/var/run/$NAME.pid
+LOGPATH=/var/log/$NAME
+SCRIPTNAME=/etc/init.d/$NAME
+
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+#. /lib/init/vars.sh
+. /lib/lsb/init-functions
+
+# make sure full path to executable binary is found
+! [ -x $DAEMON ] && echo "$DAEMON: executable not found" && exit 1
+
+COMMAND="$DAEMON $DAEMON_ARGS"
+
+eval_cmd() {
+  local rc=$1
+  if [ $rc -eq 0 ]; then
+    echo '[  OK  ]'
+  else
+    echo '[FAILED]'
+  fi
+  return $rc
+}
+
+start() {
+  # see if running
+  local PIDS=$(pidof $NAME)
+
+  if [ -n "$PIDS" ]; then
+    echo "$NAME (pid $PIDS) is already running"
+    return 0
+  fi
+  printf "%-50s%s" "Starting $NAME: " ''
+  nohup $COMMAND > $LOGPATH/$NAME.log 2> $LOGPATH/$NAME.err < /dev/null &
+  # save pid to file if you want
+  echo $! > $PIDFILE
+	
+  # check again if running
+  sleep 0.1
+  pidof $NAME >/dev/null 2>&1
+  eval_cmd $?
+}
+
+stop() {
+  # see if running
+  local PIDS=$(pidof $NAME)
+
+  if [ -z "$PIDS" ]; then
+    echo "$NAME not running"
+    return 0
+  fi
+  printf "%-50s%s" "Stopping $NAME: " ''
+  rm -f $PIDFILE
+  kill -9 $PIDS
+  eval_cmd $?
+}
+
+status() {
+  # see if running
+  local PIDS=$(pidof $NAME)
+
+  if [ -n "$PIDS" ]; then
+    echo "$NAME (pid $PIDS) is running"
+  else
+    echo "$NAME is stopped"
+  fi
+}
+
+case $1 in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  restart)
+    stop
+    sleep 1
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|restart}"
+    exit 1
+esac
+
+exit $?
