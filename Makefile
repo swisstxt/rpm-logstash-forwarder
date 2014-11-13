@@ -2,7 +2,7 @@ HOME=$(shell pwd)
 VERSION="1"
 RELEASE="1"
 NAME=logstash-forwarder
-SPEC=$(shell .make_helper/getspec ${NAME})
+SPEC=$(shell ./make_helper/getspec ${NAME})
 OS_RELEASE=$(shell lsb_release -rs | cut -f1 -d.)
 
 all: build
