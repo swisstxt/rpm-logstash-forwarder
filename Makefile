@@ -2,8 +2,7 @@ HOME=$(shell pwd)
 VERSION="1"
 RELEASE="1"
 NAME=logstash-forwarder
-OS_RELEASE=$(shell lsb_release -rs | cut -f1 -d.)
-SPEC=$(shell bash ./getspec)
+SPEC=$(shell bash ./getspec $NAME)
 
 all: build
 
@@ -27,4 +26,4 @@ build-thirdparty: get-thirdparty
 build: clean build-thirdparty tidy-thirdparty
 	cp -r ./SPECS/* ./rpmbuild/SPECS/ || true
 	cp -r ./SOURCES/* ./rpmbuild/SOURCES/ || true
-	echo $SPEC
+	echo ${SPEC}
