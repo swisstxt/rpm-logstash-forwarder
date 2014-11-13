@@ -8,12 +8,13 @@ if [ -z "$1" ]; then
 	exit 1;
 fi
 
-if [ -e SPECS/${NAME}-${OS_RELEASE}.spec ]; then 
-	echo "SPECS/${NAME}-${OS_RELEASE}.spec"; 
+if [ -e SPECS/${NAME}-${OS_RELEASE}.spec ]; then
+	echo "SPECS/${NAME}-${OS_RELEASE}.spec";
 	exit 0;
-elseif  [ -e SPECS/${NAME}.spec ];
-	echo SPECS/${NAME}.spec; 
+elif  [ -e SPECS/${NAME}.spec ]; then
+	echo SPECS/${NAME}.spec;
 	exit 0;
-else 
+else
+	echo "No matching spec-file found"
 	exit 1;
 fi

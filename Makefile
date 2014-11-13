@@ -2,7 +2,7 @@ HOME=$(shell pwd)
 VERSION="1"
 RELEASE="1"
 NAME=logstash-forwarder
-SPEC=$(shell bash ./getspec $NAME)
+SPEC=$(shell ./getspec ${NAME})
 
 all: build
 
@@ -20,7 +20,7 @@ tidy-thirdparty:
 	mv ./SOURCES/logstash-forwarder.bin ./SOURCES/logstash-forwarder
 
 build-thirdparty: get-thirdparty
-	cd ./SOURCES/logstash-forwarder; go build 
+	cd ./SOURCES/logstash-forwarder; go build
 	cp ./SOURCES/logstash-forwarder/logstash-forwarder ./SOURCES/logstash-forwarder.bin
 
 build: clean build-thirdparty tidy-thirdparty
