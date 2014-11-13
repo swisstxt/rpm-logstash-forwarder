@@ -9,7 +9,7 @@ all: build
 
 clean:
 	rm -rf ./rpmbuild
-	rm ./SOURCES/logstash-forwarder
+	rm -rf ./SOURCES/logstash-forwarder
 	mkdir -p ./rpmbuild/SPECS/ ./rpmbuild/SOURCES/
 	mkdir -p ./SPECS ./SOURCES
 
