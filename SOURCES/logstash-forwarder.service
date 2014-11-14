@@ -4,7 +4,7 @@ After=syslog.target
 
 [Service]
 WorkingDirectory=/opt/logstash-forwarder
-ExecStart=/opt/logstash-forwarder/logstash-forwarder -config /opt/logstash-forwarder.conf -spool-size 100
+ExecStart=/opt/logstash-forwarder/logstash-forwarder -config /opt/logstash-forwarder/logstash-forwarder.conf -spool-size 100
 Restart=on-failure
 StandardError=syslog
 

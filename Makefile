@@ -3,6 +3,7 @@ VERSION="1"
 RELEASE="1"
 NAME=logstash-forwarder
 SPEC=$(shell ./make_helper/getspec ${NAME})
+ARCH=$(shell ./make_helper/getarch)
 OS_RELEASE=$(shell lsb_release -rs | cut -f1 -d.)
 
 all: build
@@ -31,6 +32,7 @@ build: clean build-thirdparty tidy-thirdparty
 	--define "rel ${RELEASE}" \
 	--define "name ${NAME}" \
 	--define "os_rel ${OS_RELEASE}" \
+	--define "arch ${ARCH}" \
 	--define "_topdir %(pwd)/rpmbuild" \
 	--define "_builddir %{_topdir}" \
 	--define "_rpmdir %{_topdir}" \
