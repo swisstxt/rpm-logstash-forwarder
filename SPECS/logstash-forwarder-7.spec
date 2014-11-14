@@ -25,7 +25,7 @@ Logstash Forwarder for RHEL/CENTOS %{os_rel}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{appdir}/log/
+mkdir -p $RPM_BUILD_ROOT/%{appdir}
 mkdir -p $RPM_BUILD_ROOT/%{systemd_dest}
 %{__install} -p -m 0755 %{SOURCE1} $RPM_BUILD_ROOT/%{appdir}/logstash-forwarder
 %{__install} -p -m 0750 %{SOURCE2} $RPM_BUILD_ROOT/%{appdir}/logstash-forwarder.conf
