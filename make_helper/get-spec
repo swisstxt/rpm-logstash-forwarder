@@ -1,12 +1,12 @@
 #!/bin/bash
 
-NAME=$1
-OS_RELEASE=$(lsb_release -rs | cut -f1 -d.)
-
 if [ -z "$1" ]; then
 	echo "USAGE: $(basename $0) [PACKAGE_NAME]";
 	exit 1;
 fi
+
+NAME=$1
+OS_RELEASE=$(lsb_release -rs | cut -f1 -d.)
 
 if [ -e SPECS/${NAME}-${OS_RELEASE}.spec ]; then
 	echo "SPECS/${NAME}-${OS_RELEASE}.spec";

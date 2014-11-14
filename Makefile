@@ -1,9 +1,9 @@
 HOME=$(shell pwd)
 VERSION="1"
-RELEASE="1"
+RELEASE=$(shell ./make_helper/get-git-rev .)
 NAME=logstash-forwarder
-SPEC=$(shell ./make_helper/getspec ${NAME})
-ARCH=$(shell ./make_helper/getarch)
+SPEC=$(shell ./make_helper/get-spec ${NAME})
+ARCH=$(shell ./make_helper/get-arch)
 OS_RELEASE=$(shell lsb_release -rs | cut -f1 -d.)
 
 all: build
@@ -11,6 +11,7 @@ all: build
 clean:
 	rm -rf ./rpmbuild
 	rm -rf ./SOURCES/logstash-forwarder
+	rm -rf ./SOURCES/logstash-forwarder.bin
 	mkdir -p ./rpmbuild/SPECS/ ./rpmbuild/SOURCES/
 	mkdir -p ./SPECS ./SOURCES
 
