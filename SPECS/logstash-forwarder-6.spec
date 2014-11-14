@@ -16,7 +16,7 @@ Source3:        logstash-forwarder.conf
 Source4:        logstash-forwarder.init
 
 %define appdir /opt/%{name}
-%define systemv_dest /usr/lib/systemd/system/
+%define systemv_dest /etc/init.d
 %description
 Logstash Forwarder for RHEL/CENTOS %{os_rel}
 
