@@ -1,4 +1,4 @@
-%%global service_name %{name}
+%global service_name %{name}
 
 Name:           %{name}
 Version:        %{ver}
