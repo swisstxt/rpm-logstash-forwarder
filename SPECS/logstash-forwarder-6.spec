@@ -10,11 +10,6 @@ License:        commercial
 URL:            https://github.com/elasticsearch/logstash-forwarder
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:        logstash-forwarder.bin
-Source1:        logstash-forwarder.conf
-Source2:        logstash-forwarder.init
-Source3:        logstash-forwarder.sh
-
 %description
 Logstash Forwarder for RHEL/CENTOS %{os_rel}
 
@@ -26,10 +21,10 @@ Logstash Forwarder for RHEL/CENTOS %{os_rel}
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/opt/logstash-forwarder/log/
-cp logstash-forwarder.bin $RPM_BUILD_ROOT/opt/logstash-forwarder/logstash-forwarder
-cp logstash-forwarder.sh $RPM_BUILD_ROOT/opt/logstash-forwarder/logstash-forwarder.sh
-cp logstash-forwarder.conf $RPM_BUILD_ROOT/opt/logstash-forwarder/logstash-forwarder.conf
-cp logstash-forwarder.init $RPM_BUILD_ROOT/etc/init.d/system/logstash-forwarder
+install -m 755 logstash-forwarder.bin $RPM_BUILD_ROOT/opt/logstash-forwarder/logstash-forwarder
+install -m 755 logstash-forwarder.sh $RPM_BUILD_ROOT/opt/logstash-forwarder/logstash-forwarder.sh
+install -m 755 logstash-forwarder.conf $RPM_BUILD_ROOT/opt/logstash-forwarder/logstash-forwarder.conf
+install -m 755 logstash-forwarder.init $RPM_BUILD_ROOT/etc/init.d/system/logstash-forwarder
 
 %clean
 rm -rf $RPM_BUILD_ROOT
