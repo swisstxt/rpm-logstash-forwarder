@@ -10,6 +10,8 @@ License:        commercial
 URL:            https://github.com/elasticsearch/logstash-forwarder
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+Source0:        https://download.elasticsearch.org/kibana/kibana/kibana-%{ver}.tar.gz
+
 %description
 Logstash Forwarder for RHEL/CENTOS %{os_rel}
 
