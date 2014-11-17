@@ -38,6 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
+%attr(0755,root,root) %{appdir}
 %attr(0755,root,root) %{appdir}/*
 %attr(0755,root,root) %{systemv_dest}/logstash-forwarder
 %config(noreplace) %{appdir}/logstash-forwarder.conf
