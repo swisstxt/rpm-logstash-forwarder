@@ -40,4 +40,4 @@ build: clean build-thirdparty tidy-thirdparty
 	--define "_srcrpmdir %{_topdir}" \
 
 publish: 
-	SPEC=$(shell ./make_helper/publish-rpm ${OS_RELEASE})
+	./make_helper/publish-rpm ${OS_RELEASE}

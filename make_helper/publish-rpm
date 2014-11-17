@@ -9,5 +9,5 @@ OS_RELEASE=$1
 
 for RPM in $(find . -name "*.rpm" | grep -v src.rpm); do 
 	BASE=$(basename $RPM)
-	echo curl -X POST --data-binary @RPM yum-01.stxt.media.int:8080/swisstxt-centos${OS_RELEASE}/$BASE
+	curl -X POST --data-binary @$RPM yum-01.stxt.media.int:8080/swisstxt-centos${OS_RELEASE}/$BASE
 done
