@@ -41,4 +41,4 @@ build: clean build-thirdparty tidy-thirdparty
 	--define "_srcrpmdir %{_topdir}" \
 
 publish: 
-	./make_helper/publish-rpm ${OS_RELEASE}
+	/opt/buildhelper/buildhelper pushrpm yum-01.stxt.media.int:8080/swisstxt-centos
