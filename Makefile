@@ -1,10 +1,11 @@
 HOME=$(shell pwd)
 VERSION="1"
-RELEASE=$(shell ./make_helper/get-git-rev .)
 NAME=logstash-forwarder
-SPEC=$(shell ./make_helper/get-spec ${NAME})
-ARCH=$(shell ./make_helper/get-arch)
-OS_RELEASE=$(shell lsb_release -rs | cut -f1 -d.)
+RELEASE=$(shell /opt/buildhelper/buildhelper getgitrev .)
+SPEC=$(shell /opt/buildhelper/buildhelper getspec ${NAME})
+ARCH=$(shell /opt/buildhelper/buildhelper getarch)
+OS_RELEASE=$(shell /opt/buildhelper/buildhelper getosrelease)
+
 
 all: build
 
