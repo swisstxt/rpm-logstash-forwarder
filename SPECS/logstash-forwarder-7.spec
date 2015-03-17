@@ -7,7 +7,7 @@ Summary:        Logstash Forwarder for RHEL/CENTOS %{os_rel}
 BuildArch:      %{arch}
 Group:          Application/Internet
 License:        commercial
-URL:            https://github.com/elasticsearch/logstash-forwarder
+URL:            https://github.com/elastic/logstash-forwarder
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source1:        logstash-forwarder.bin

@@ -17,7 +17,6 @@ NAME=logstash-forwarder
 DAEMON=/opt/logstash-forwarder/logstash-forwarder.sh
 DAEMON_ARGS="-config /opt/logstash-forwarder/logstash-forwarder.conf -spool-size 100"
 PIDFILE=/var/run/$NAME.pid
-LOGPATH=/opt/$NAME/log
 SCRIPTNAME=/etc/init.d/$NAME
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
@@ -48,7 +47,7 @@ start() {
     return 0
   fi
   printf "%-50s%s" "Starting $NAME: " ''
-  nohup $COMMAND > $LOGPATH/$NAME.log 2> $LOGPATH/$NAME.err < /dev/null &
+  nohup $COMMAND > /dev/null &
   # save pid to file if you want
   echo $! > $PIDFILE
 	

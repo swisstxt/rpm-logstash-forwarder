@@ -6,7 +6,7 @@ After=syslog.target
 WorkingDirectory=/opt/logstash-forwarder
 ExecStart=/opt/logstash-forwarder/logstash-forwarder -config /opt/logstash-forwarder/logstash-forwarder.conf -spool-size 100
 Restart=on-failure
-StandardError=syslog
+StandardError=null
 StandardOutput=null
 
 [Install]

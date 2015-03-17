@@ -17,7 +17,7 @@ clean:
 	mkdir -p ./SPECS ./SOURCES
 
 get-thirdparty:
-	git clone https://github.com/elasticsearch/logstash-forwarder ./SOURCES/logstash-forwarder
+	git clone https://github.com/elastic/logstash-forwarder ./SOURCES/logstash-forwarder
 
 tidy-thirdparty:
 	rm -rf ./SOURCES/logstash-forwarder
@@ -40,5 +40,5 @@ build: clean build-thirdparty tidy-thirdparty
 	--define "_rpmdir %{_topdir}" \
 	--define "_srcrpmdir %{_topdir}" \
 
-publish: 
+publish:
 	/opt/buildhelper/buildhelper pushrpm yum-01.stxt.media.int:8080/swisstxt-centos
